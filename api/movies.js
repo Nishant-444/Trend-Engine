@@ -1,19 +1,10 @@
-// This is the server-side code that will run on Vercel
-
-// In api/movies.js
-
 export default async function handler(request, response) {
-  // --- Start of Fix ---
-  // Get the host (e.g., 'your-project.vercel.app') from the request headers.
   const host = request.headers.host;
   
-  // Create a full URL object by combining the host with the relative path.
   const fullUrl = new URL(request.url, `https://${host}`);
   
-  // Now, safely get search parameters from the full URL.
   const { searchParams } = fullUrl;
   const query = searchParams.get('query');
-  // --- End of Fix ---
 
   const API_KEY = process.env.TMDB_API_KEY;
 
@@ -43,6 +34,7 @@ export default async function handler(request, response) {
     return response.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
 
 
 
