@@ -2,7 +2,7 @@
 
 export default async function handler(request, response) {
    // Get the host from the request headers
-  const host = request.headers.get('host');
+  const host = request.headers.get;
   // Construct a full, valid URL
   const fullUrl = new URL(request.url, `https://${host}`);
   // Get the search query from the request URL (e.g., /api/movies?query=avatar)
@@ -42,4 +42,5 @@ export default async function handler(request, response) {
     return response.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
 
