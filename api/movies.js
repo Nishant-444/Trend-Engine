@@ -1,6 +1,10 @@
 // This is the server-side code that will run on Vercel
 
 export default async function handler(request, response) {
+   // Get the host from the request headers
+  const host = request.headers.get('host');
+  // Construct a full, valid URL
+  const fullUrl = new URL(request.url, `https://${host}`);
   // Get the search query from the request URL (e.g., /api/movies?query=avatar)
   const { searchParams } = new URL(request.url);
   const query = searchParams.get('query');
@@ -38,3 +42,4 @@ export default async function handler(request, response) {
     return response.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
